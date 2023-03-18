@@ -20,7 +20,7 @@ local template = grafana.template;
       template.new(
         name='namespace',
         datasource='$datasource',
-        query='label_values(kube_namespace_status_phase{%(kubeStateMetricsSelector)s, %(clusterLabel)s="$cluster"}, namespace)' % $._config,
+        query='label_values(kube_namespace_status_phase{%(kubeStateMetricsSelector)s, %(clusterLabel)s="$cluster"}, exported_namespace)' % $._config,
         current='',
         hide='',
         refresh=2,
@@ -33,7 +33,7 @@ local template = grafana.template;
       template.new(
         name='pod',
         datasource='$datasource',
-        query='label_values(kube_pod_info{%(kubeStateMetricsSelector)s, %(clusterLabel)s="$cluster", namespace="$namespace"}, pod)' % $._config,
+        query='label_values(kube_pod_info{%(kubeStateMetricsSelector)s, %(clusterLabel)s="$cluster", exported_namespace="$namespace"}, pod)' % $._config,
         current='',
         hide='',
         refresh=2,
